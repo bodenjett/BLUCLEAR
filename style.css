@@ -1,135 +1,104 @@
-/* ─── Global Styles ─────────────────────────────── */
+/* ─── Global ─────────────────────────────────────── */
 body {
   font-family: "Proxima Nova", sans-serif;
-  margin: 0;
+  margin: 1;
   line-height: 1.5;
-  color: #ffffff;
-  /* previous OFF WHITE background-color: #f2f0f0;*/
+  color: #fff;
   background-color: #0051bf;
 }
 
 /* ─── Header ─────────────────────────────────────── */
 header {
-  font-family: "Proxima Nova", sans-serif;
   background: #0051bf;
   color: white;
   text-align: center;
   padding: 1rem 9rem;
-  align-items: center;
 }
-/* ─── Header Banner Logo ─────────────────────────────── */
+
+/* Logo banner */
 #header-banner {
   width: 100%;
-  display: flex;            /* enables centering */
-  justify-content: center;  /* centers horizontally */
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
   overflow: hidden;
-  background-color: #0051bf;   /* optional: prevents white gap before image loads */
+  background-color: #0051bf;
 }
 
 #header-banner img {
   display: block;
-  max-width: 1000px;        /* sets a nice visual width */
+  max-width: 1000px;
   width: 100%;
   height: auto;
-  object-fit: cover;
-  object-position: center;  /* centers image subject */
-}
-h1 {
-  font-family: "Proxima Nova", sans-serif;
-  margin-bottom: 0rem;
-}
-h2 {
-  font-family: "Proxima Nova", sans-serif;
-  margin-bottom: 0rem;
-  font-size: 4.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  object-fit: fill;
+  object-position: center;
 }
 
+/* ─── CTA Button ─────────────────────────────────── */
 .cta-btn {
-  display:block;
+  display:flexbox;
   background: white;
   color: #0077b6;
-  padding: 1.618rem 0rem;
+  padding: 1.618rem 26.5rem;
   border-radius: 5px;
   font-weight: bold;
   text-decoration: none;
-  align-items: center;
+  object-fit: cover;
+  object-position: center;
+  
 }
 
 .cta-btn:hover {
   background: #f1caf8;
-  color: #ffffff
+  color: #ffffff;
 }
 
-/* ─── Section Layout ─────────────────────────────── */
+/* ─── Sections ───────────────────────────────────── */
 section {
-  padding: 3rem 1rem;
+  padding:2rem 0rem;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 /* ─── Welcome Banner ─────────────────────────────── */
 #welcome-banner {
   width: 100%;
-  display: flex;            /* enables centering */
-  justify-content: center;  /* centers horizontally */
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
   overflow: hidden;
-  background-color: #0051bf;   /* optional: prevents white gap before image loads */
+  background-color: #0051bf;
 }
 
 #welcome-banner img {
   display: block;
-  max-width: 2000px;        /* sets a nice visual width */
+  max-width: 2000px;
   width: 100%;
   height: auto;
   object-fit: cover;
-  object-position: center;  /* centers image subject */
-}
-/* ─── Services Grid ──────────────────────────────── */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  object-position: center;
 }
 
-.service {
-  background: #0f20bd;
-  border-radius: 8px;
-  padding: 0rem;
-}
-
-
+/* ─── Lists ──────────────────────────────────────── */
 ul {
-  list-style: none;        /* removes bullet points */
-  margin: 0 auto;   
-  font-size: 2.2rem;       /* centers the <ul> block */
+  list-style: none;
+  margin: 0 auto;
+  font-size: 2.2rem;
   font-weight: bolder;
-  padding: 0;              /* removes default padding */
-  text-align: center;      /* centers the text */
-  width: fit-content;      /* keeps list compactly centered */
+  padding: 0;
+  text-align: center;
+  width: fit-content;
 }
 
 ul li {
-  margin: 0rem 0;        /* adds spacing between lines */
-  line-height: 1.5;        /* improves readability */
+  line-height: 1.5;
 }
 
-/* ─── Services ──────────────────────────────── */
-#services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-
-/* ─── Gallery Grid ───────────────────────────────── */
+/* ─── Gallery & Before/After ─────────────────────── */
 .gallery-grid {
   display: grid;
   background-color: #0051bf;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
   gap: 1rem;
 }
 
@@ -137,11 +106,12 @@ ul li {
   width: 100%;
   border-radius: 8px;
 }
+
 .before-after-container {
   position: relative;
   width: 100%;
-  max-width: 200px;
-  height: 300px;
+  max-width: 600px;
+  height: 800px;
   margin: 1rem auto;
   overflow: hidden;
   border-radius: 12px;
@@ -159,7 +129,6 @@ ul li {
   pointer-events: none;
 }
 
-/* hide right side of the after image by masking instead of clipping */
 .before-after-container .after {
   -webkit-mask-image: linear-gradient(to right, black 50%, transparent 50%);
   mask-image: linear-gradient(to right, black 50%, transparent 50%);
@@ -183,81 +152,75 @@ ul li {
   cursor: ew-resize;
   z-index: 3;
 }
+/* ─── Before & After Gallery Layout ─────────────────────────────── */
 .ba-gallery {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 4 columns on desktop */
+  grid-template-rows: repeat(4, auto);   /* 2 rows automatically sized */
+  gap: 2rem;                             /* spacing between containers */
+  justify-items: center;                 /* centers each slider */
   align-items: center;
-  gap: 3rem;
   margin: 2rem auto;
   width: 90%;
-  max-width: 1000px;
+  max-width: 1200px;
 }
-.before-after-container .before { z-index: 1; }
 
-.caption {
-  text-align: center;
-  font-size: 14px;
-  color: #555;
-  margin-top: 10px;
+/* Each before/after container fits nicely */
+.before-after-container {
+  width: 100%;
+  max-width: 500px;
+  height: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: ew-resize;
 }
-.before-after-container .before {
-  z-index: 1;
+
+/* ─── Mobile Layout ─────────────────────────────── */
+@media (max-width: 900px) {
+  .ba-gallery {
+    grid-template-columns: 1fr;   /* single column on mobile */
+    grid-template-rows: auto;     /* 8 rows (one per container) */
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .before-after-container {
+    max-width: 100%;
+    height: 300px;                /* shorter for mobile */
+  }
 }
-.before-after-container .after {
-  z-index: 2;
-}
-.slider-handle {
-  z-index: 3;
-}
-.before-after-container img {
-  pointer-events: none;
-}
-.slider-handle {
-  pointer-events: auto;
-}
-/* ─── Quote Layout with Image ───────────────────── */
+
+/* ─── Quote Layout & Calculator ──────────────────── */
 .quote-layout {
   display: flex;
-  align-items: center;       /* vertically centers both */
-  justify-content: center;   /* horizontally centers within the section */
-  gap: 0rem;                 /* space between image and calculator */
-  flex-wrap: wrap;           /* stacks them on small screens */
-  margin-top: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .quote-image {
-  max-width: 500px;          /* adjust size of your PNG */
+  max-width: 600px;
   width: 100%;
   height: auto;
-  border-radius: 8px;        /* optional, for soft corners */
+  border-radius: 8px;
 }
 
-@media (max-width: 1000px) {
-  .quote-layout {
-    flex-direction: column;
-    text-align: center;
-  }
-  .quote-image {
-    max-width: 100%;
-  }
-}
-
-/* ─── Quote Calculator ───────────────────────────── */
 #quote {
   background: #0051bf;
   border-top: 3px solid #ffffff;
-  padding: 0rem 0rem;
-  border-radius: 0px;
+  padding: 0;
 }
 
 .quote-calculator {
-  max-width: 333px;
-  margin: .5rem auto;
-  background: rgb(0, 0, 0);
-  padding: 1.5rem;
+  max-width: 500px;
+  margin: 0rem;
+  background: #000;
+  padding: 2.5rem;
   border-radius: 33px;
   box-shadow: 0 12px 16px rgba(0,0,0,0.1);
-  
 }
 
 .quote-inputs {
@@ -268,7 +231,6 @@ ul li {
 
 label {
   font-weight: bold;
-  margin-bottom: 0.25rem;
 }
 
 input, textarea {
@@ -278,35 +240,26 @@ input, textarea {
   font-size: 2rem;
 }
 
-input[type="number"] {
-  padding: .75rem;
-}
-
 button, #calculate-btn {
-  align-items: center;
   margin: 1rem;
   background: #0077b6;
-  margin-top: 1.5rem;
   color: white;
   border: none;
   padding: .75rem;
   border-radius: 19px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 button:hover, #calculate-btn:hover {
-  align-items: center;
-  padding: .75rem;
   background: #f1caf8;
-
 }
 
 #quote-result {
   text-align: center;
   margin-top: 1.5rem;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: bold;
 }
 
@@ -317,10 +270,9 @@ button:hover, #calculate-btn:hover {
 /* ─── Footer ─────────────────────────────────────── */
 footer {
   text-align: center;
-  padding: 0rem;
+  padding: 1rem;
   background: #0051bf;
   font-size: 1.5rem;
- 
 }
 
 .contact-info a {
@@ -328,19 +280,40 @@ footer {
   text-decoration: none;
 }
 
-@media (max-width: 2000px) {
-  .banner-wrapper {
-    height: 600px;
+/* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 900px) {
+  header {
+    padding: .25rem;
   }
 
-}
-@media (min-width: 900px) {
-  .ba-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 1rem 0;
+    text-align: center;
+    padding: 1rem 1.25rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 1.1rem;
   }
-  .before-after-container {
-    height: 300px; /* adjust for smaller cards on desktop */
+
+  #welcome-banner img { max-width: 100%; }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 0.325rem;
   }
+
+  .before-after-container { height: 260px; }
+
+  .quote-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+  }
+
+  .quote-calculator { width: 100%; max-width: 220px; }
+  input, textarea, button { font-size: 1.5rem; }
 }

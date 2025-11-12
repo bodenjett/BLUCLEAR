@@ -123,8 +123,8 @@ ul li {
 .before-after-container {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 3 / 4;              /* replaces fixed heights for responsiveness */
+  max-width: 300px;
+  aspect-ratio: 6 / 8;              /* replaces fixed heights for responsiveness */
   margin: 0rem auto;
   border-radius: 22px;
   overflow: hidden;
@@ -206,7 +206,7 @@ ul li {
   align-items: center;
   margin: 2rem auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 2000px;
 }
 @media (max-width: 500px) {
   .ba-gallery {
@@ -219,7 +219,7 @@ ul li {
   .before-after-container {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 4 / 5;              /* adjust shape for mobile */
+    aspect-ratio: 6 / 8;              /* adjust shape for mobile */
   }
 }
 /* ─── Quote Layout & Calculator ──────────────────── */

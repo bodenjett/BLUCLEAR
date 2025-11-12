@@ -44,8 +44,14 @@ This website was created OCT 2025
   <div class="ba-gallery">
 
     <div class="before-after-container">
-      <img src="images2/before1.avif" alt="Before 1" class="before">
-      <img src="images2/after1.avif" alt="After 1" class="after">
+      <img src="images2/before1.avif" alt="Before 1" class="before" 
+        loading="eager"
+     fetchpriority="high"
+     decoding="sync">
+    
+      <img src="images2/after1.avif" alt="After 1" class="after" loading="eager"
+     fetchpriority="high"
+     decoding="sync">
       <div class="slider-handle"></div>
     </div>
 

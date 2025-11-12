@@ -151,6 +151,19 @@ This website was created OCT 2025
   <footer>
     <p>&copy; 2025 BLUCLEAR | TORONTO, ONTARIO</p>
   </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all before/after images
+  document.querySelectorAll(".before-after-container img").forEach(img => {
+    // Skip if already loaded
+    if (img.complete) return;
+
+    // Force-load image immediately
+    const preload = new Image();
+    preload.src = img.currentSrc || img.src;
+  });
+});
+</script>
 
 
 </body>

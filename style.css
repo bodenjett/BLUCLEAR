@@ -1,0 +1,384 @@
+/* ─── Global ─────────────────────────────────────── */
+body {
+  font-family: "Proxima Nova", sans-serif;
+  margin: 1rem;                  /* was 1 (invalid). Use 0 or a valid unit like 1rem */
+  line-height: 1.5;
+  color: #fff;
+  background-color: #0051bf;
+}
+.visually-hidden {
+  position: absolute /*!important*/;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px); 
+  white-space: nowrap;
+}
+
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: none;       /* re-enable locally if an image must be clickable */
+}
+
+/* ─── Header ─────────────────────────────────────── */
+header {
+  background: #0051bf;
+  color: white;
+  text-align: center;
+  padding: 1rem 9rem;
+}
+
+/* Logo banner */
+#header-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #0051bf;
+}
+
+#header-banner img {
+  display: block;
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ─── CTA Button ─────────────────────────────────── */
+.cta-btn {
+  display: block;                 /* makes it full-width */
+  width: calc(90%);               /* full width minus 1rem padding on both sides */
+  margin: 1rem auto;              /* centers horizontally, adds top/bottom spacing */
+  padding: 1.618rem 0;            /* vertical padding; no horizontal since it's full-width */
+  background: white;
+  color: #0077b6;
+  border-radius: 7px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;         /* ensures padding doesn't overflow width */
+}
+
+.cta-btn:hover {
+  background: #eea4fb;
+  color: #ffffff;
+}
+
+/* ─── Sections ───────────────────────────────────── */
+section {
+  padding: 2rem .25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── Welcome Banner ─────────────────────────────── */
+#welcome-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #0051bf;
+}
+
+#welcome-banner img {
+  display: block;
+  max-width: 2000px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ─── Lists ──────────────────────────────────────── */
+ul {
+  list-style: none;
+  margin: 0 auto;
+  font-size: 2.2rem;
+  font-weight: bolder;
+  padding: 0;
+  text-align: center;
+  width: fit-content;
+}
+
+ul li {
+  line-height: 1.5;
+}
+
+/* ─── Gallery ────────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  background-color: #0051bf;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 11px;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ─── Before/After (Consolidated) ────────────────── */
+/* Container */
+.before-after-container {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 3 / 4;              /* replaces fixed heights for responsiveness */
+  margin: 0rem auto;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: ew-resize;
+}
+
+/* Base images */
+.before-after-container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                 /* avoids distortion (was fill) */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* After image mask (controlled via JS by shifting mask-position) */
+.before-after-container .after {
+  -webkit-mask-image: linear-gradient(to right, black 50%, transparent 50%);
+  mask-image: linear-gradient(to right, black 50%, transparent 50%);
+  -webkit-mask-size: 200% 100%;
+  mask-size: 200% 100%;
+  -webkit-mask-position: left;
+  mask-position: left;
+  transition: -webkit-mask-position 0.1s linear, mask-position 0.1s linear;
+  z-index: 2;
+}
+
+/* Handle */
+.slider-handle {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%, -50%);
+
+  /* Make the handle WIDE enough for an icon */
+  width: 2px;          /* adjust if your PNG is bigger */
+  height: 100%;
+
+  /* Your existing bar */
+  background: rgba(255, 255, 255, 0.769);
+  border-left: 0px solid rgba(0,0,0,0.3);
+  border-right: 0px solid rgba(9, 119, 198, 0.862);
+
+  /* For icon centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: ew-resize;
+
+  /* MOST IMPORTANT → sits ABOVE the masked after image */
+  z-index: 10;
+
+  /* Do NOT block dragging */
+  pointer-events: none;
+}
+
+/* The PNG/SVG icon */
+.slider-handle .slider-icon {
+  position: absolute;
+  top: 50%;                      /* center vertically in the handle */
+  left: 50%;                     /* center horizontally in the handle */
+  transform: translate(-50%, -50%);  /* perfectly center the 100x100 square */
+
+  width: 100px;
+  height: 200px;
+  object-fit: contain;
+
+  pointer-events: none;          /* keep dragging smooth */
+  z-index: 11;                   /* icon stays above bar */
+}
+
+/* ─── HOVER/SELECTION “NO-HIGHLIGHT” FIX (SCOPED) ── */
+/* Block selection/tap highlight only inside BA containers */
+.before-after-container,
+.before-after-container * {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Neutralize any global img:hover/:active effects inside BA */
+.before-after-container img:hover,
+.before-after-container img:active {
+  filter: none !important;
+  outline: none !important;
+}
+
+/* Prevent blue/grey selection flash */
+.before-after-container ::selection { background: transparent; }
+.before-after-container ::-moz-selection { background: transparent; }
+
+/* Ensure your interactive control (e.g., <input type="range">) works */
+.before-after-container input[type="range"] {
+  pointer-events: auto;             /* range should receive events */
+  touch-action: none;               /* prevents browser text/image selection during drag */
+}
+
+/* ─── Before & After Gallery Layout ──────────────── */
+.ba-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 2000px;
+}
+@media (max-width: 500px) {
+  .ba-gallery {
+    grid-template-columns: 1fr;       /* 1 column */
+    gap: 1.5rem;                      /* tighter spacing */
+    padding: 0rem;                  /* 1rem margin on sides */
+    justify-items: center;
+  }
+
+  .before-after-container {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;              /* adjust shape for mobile */
+  }
+}
+/* ─── Quote Layout & Calculator ──────────────────── */
+.quote-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.quote-image {
+  max-width: 720px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+#quote {
+  background: #0051bf;
+  border-top: 3px solid #ffffff;
+  padding: 0;
+}
+
+.quote-calculator {
+  max-width: 800px;
+  margin: 0rem;
+  background: #000;
+  padding: 2.5rem;
+  border-radius: 33px;
+  box-shadow: 0 12px 16px rgba(0,0,0,0.1);
+}
+
+.quote-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label { font-weight: bold; }
+
+input, textarea {
+  padding: 0.5rem;
+  border: 3px solid #0051bf;
+  border-radius: 19px;
+  font-size: 2rem;
+}
+
+button, #calculate-btn {
+  margin: 1rem;
+  background: #0077b6;
+  color: white;
+  border: none;
+  padding: .75rem;
+  border-radius: 19px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+button:hover, #calculate-btn:hover {
+  background: #eea4fb;
+}
+
+#quote-result {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+#total-price { color: #008dd8; }
+
+/* ─── Footer ─────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #0051bf;
+  font-size: 1.5rem;
+}
+
+.contact-info a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 600px) {
+  header { padding: .25rem; }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+  }
+
+  #welcome-banner img { max-width: 100%; }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 0.325rem;
+  }
+
+  .before-after-container {
+    max-width: 100%;
+    aspect-ratio: 3 / 4;   /* responsive height on mobile too */
+  }
+
+  .quote-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+  }
+
+  .quote-calculator { width: 100%; max-width: 220px; }
+  input, textarea, button { font-size: 1.5rem; }
+}
